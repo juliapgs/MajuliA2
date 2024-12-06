@@ -10,10 +10,10 @@ namespace MajuliA2.Entities
         public string Cor { get; set; }
 
         [Range(0, double.MaxValue)]
-        public decimal Valor { get; set; }
+        public int Valor { get; set; }
         [Required]
-        public int CategoriaId { get; set; }
-        public Categoria? Categoria { get; set; } // Relacionamento com Categoria
+        public int? CategoriaId { get; set; }
+        public Categoria Categoria { get; set; } // Relacionamento com Categoria
 
     }
 }

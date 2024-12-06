@@ -72,7 +72,15 @@ namespace MajuliA2.Controllers
 
             Venda venda = await _context.Venda.FindAsync(id);
             venda.Cupom = await _context.Cupom.FindAsync(request.CupomId);
-            venda.ValorTotal = request.ValorTotal;
+            venda.Produtos.Clear(); // Limpa produtos existentes
+            foreach (var produtoId in request.ProdutoIds) // Itera sobre os IDs de produtos
+            {
+                Produto produto = await _context.Produto.FindAsync(produtoId);
+                if (produto != null)
+                {
+                    venda.Produtos.Add(produto); // Adiciona o produto à venda
+                }
+            }
             venda.FormaDePagamento = request.FormaDePagamento;
             venda.Endereco = request.Endereco;
             venda.Contato = request.Contato;
@@ -94,7 +102,15 @@ namespace MajuliA2.Controllers
         {
             Venda venda = new Venda();
             venda.Cupom = await _context.Cupom.FindAsync(request.CupomId);
-            venda.ValorTotal = request.ValorTotal;
+            venda.Produtos.Clear(); // Limpa produtos existentes
+            foreach (var produtoId in request.ProdutoIds) // Itera sobre os IDs de produtos
+            {
+                Produto produto = await _context.Produto.FindAsync(produtoId);
+                if (produto != null)
+                {
+                    venda.Produtos.Add(produto); // Adiciona o produto à venda
+                }
+            }
             venda.FormaDePagamento = request.FormaDePagamento;
             venda.Endereco = request.Endereco;
             venda.Contato = request.Contato;

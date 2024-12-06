@@ -4,7 +4,7 @@ namespace MajuliA2.Models.Venda
 {
     public class VendaRequest
     {
-        public decimal ValorTotal { get; set; }
+        public List<int> ProdutoIds { get; set; } = new List<int>();
         public string FormaDePagamento { get; set; }
         public string Endereco { get; set; }
         public string Contato { get; set; }

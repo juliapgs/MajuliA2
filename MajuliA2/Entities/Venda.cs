@@ -7,6 +7,7 @@
         public string FormaDePagamento { get; set; }
         public string Endereco { get; set; }
         public string Contato { get; set; }
+        public List<Produto> Produtos { get; set; } = new List<Produto>(); // Inicializa a lista
 
         // Relacionamento com Cupom
         public int? CupomId { get; set; } // Cupom opcional

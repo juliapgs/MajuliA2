@@ -4,6 +4,7 @@ using MajuliA2.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MajuliA2.Migrations
 {
     [DbContext(typeof(MajuliA2Context))]
-    partial class MajuliA2ContextModelSnapshot : ModelSnapshot
+    [Migration("20241206204720_NomeDaSuaMigracao")]
+    partial class NomeDaSuaMigracao
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
