@@ -5,8 +5,8 @@ namespace MajuliA2.Entities
     public class Produto
     {
         public int Id { get; set; }
-        public required string Nome { get; set; }
-        public required string Tamanho { get; set; }
+        public string Nome { get; set; }
+        public string Tamanho { get; set; }
         public string Cor { get; set; }
 
         [Range(0, double.MaxValue)]

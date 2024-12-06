@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using MajuliA2.Data;
 using MajuliA2.Entities;
 using MajuliA2.Models.Material;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MajuliA2.Controllers
 {

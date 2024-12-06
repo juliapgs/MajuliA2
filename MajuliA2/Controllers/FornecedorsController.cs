@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using MajuliA2.Data;
 using MajuliA2.Entities;
 using MajuliA2.Models.Fornecedor;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MajuliA2.Controllers
 {
@@ -78,27 +79,27 @@ namespace MajuliA2.Controllers
             return NoContent();
         }
 
-        ///// <summary>
-        ///// Cadastra Fornecedor
-        ///// </summary>
-        ///// <param name="request"></param>
-        ///// <returns></returns>
-        //// POST: api/Fornecedors
-        //// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        //[HttpPost]
-        //public async Task<ActionResult<Fornecedor>> PostFornecedor(FornecedorRequest request)
-        //{
-        //    Fornecedor fornecedor = new Fornecedor();
-        //    fornecedor.Nome = request.Nome;
-        //    fornecedor.Contato = request.Contato;
-        //    fornecedor.Email = request.Email;
-        //    fornecedor.Endereco = request.Endereco;
+        /// <summary>
+        /// Cadastra Fornecedor
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        // POST: api/Fornecedors
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPost]
+        public async Task<ActionResult<Fornecedor>> PostFornecedor(FornecedorRequest request)
+        {
+            Fornecedor fornecedor = new Fornecedor();
+            fornecedor.Nome = request.Nome;
+            fornecedor.Contato = request.Contato;
+            fornecedor.Email = request.Email;
+            fornecedor.Endereco = request.Endereco;
 
-        //    _context.Fornecedor.Add(fornecedor);
-        //    await _context.SaveChangesAsync();
+            _context.Fornecedor.Add(fornecedor);
+            await _context.SaveChangesAsync();
 
-        //    return CreatedAtAction("GetFornecedor", new { id = fornecedor.Id }, fornecedor);
-        //}
+            return CreatedAtAction("GetFornecedor", new { id = fornecedor.Id }, fornecedor);
+        }
 
         /// <summary>
         /// Deleta um Fornecedor cadastrado

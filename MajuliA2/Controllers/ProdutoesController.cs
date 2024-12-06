@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using MajuliA2.Data;
 using MajuliA2.Entities;
 using MajuliA2.Models.Produto;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MajuliA2.Controllers
 {
@@ -28,6 +29,7 @@ namespace MajuliA2.Controllers
         /// <returns></returns>
         // GET: api/Produtoes
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<Produto>>> GetProduto()
         {
             return await _context.Produto.ToListAsync();
@@ -40,6 +42,7 @@ namespace MajuliA2.Controllers
         /// <returns></returns>
         // GET: api/Produtoes/5
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public async Task<ActionResult<Produto>> GetProduto(int id)
         {
             var produto = await _context.Produto.FindAsync(id);
@@ -79,28 +82,28 @@ namespace MajuliA2.Controllers
             return NoContent();
         }
 
-        ///// <summary>
-        ///// Cadastra Produto
-        ///// </summary>
-        ///// <param name="request"></param>
-        ///// <returns></returns>
-        //// POST: api/Produtoes
-        //// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        //[HttpPost]
-        //public async Task<ActionResult<Produto>> PostProduto(ProdutoRequest request)
-        //{
-        //    Produto produto = new Produto();
-        //    produto.Categoria = await _context.Categoria.FindAsync(request.CategoriaId);
-        //    produto.Nome = request.Nome;
-        //    produto.Tamanho = request.Tamanho;
-        //    produto.Cor = request.Cor;
-        //    produto.Valor = request.Valor;
+        /// <summary>
+        /// Cadastra Produto
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        // POST: api/Produtoes
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPost]
+        public async Task<ActionResult<Produto>> PostProduto(ProdutoRequest request)
+        {
+            Produto produto = new Produto();
+            produto.Categoria = await _context.Categoria.FindAsync(request.CategoriaId);
+            produto.Nome = request.Nome;
+            produto.Tamanho = request.Tamanho;
+            produto.Cor = request.Cor;
+            produto.Valor = request.Valor;
 
-        //    _context.Produto.Add(produto);
-        //    await _context.SaveChangesAsync();
+            _context.Produto.Add(produto);
+            await _context.SaveChangesAsync();
 
-        //    return CreatedAtAction("GetProduto", new { id = produto.Id }, produto);
-        //}
+            return CreatedAtAction("GetProduto", new { id = produto.Id }, produto);
+        }
 
         /// <summary>
         /// Deleta um Produto cadastrado 

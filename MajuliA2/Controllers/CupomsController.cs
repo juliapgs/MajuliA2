@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using MajuliA2.Data;
 using MajuliA2.Entities;
 using MajuliA2.Models.Cupom;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MajuliA2.Controllers
 {
@@ -28,6 +29,7 @@ namespace MajuliA2.Controllers
         /// <returns></returns>
         // GET: api/Cupoms
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<Cupom>>> GetCupom()
         {
             return await _context.Cupom.ToListAsync();
@@ -40,6 +42,7 @@ namespace MajuliA2.Controllers
         /// <returns></returns>
         // GET: api/Cupoms/5
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public async Task<ActionResult<Cupom>> GetCupom(int id)
         {
             var cupom = await _context.Cupom.FindAsync(id);

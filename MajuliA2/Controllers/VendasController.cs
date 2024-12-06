@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using MajuliA2.Data;
 using MajuliA2.Entities;
 using MajuliA2.Models.Venda;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MajuliA2.Controllers
 {
@@ -61,6 +62,7 @@ namespace MajuliA2.Controllers
         // PUT: api/Vendas/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [AllowAnonymous]
         public async Task<IActionResult> PutVenda(int id, VendaRequest request)
         {
             if (!VendaExists(id))
@@ -87,6 +89,7 @@ namespace MajuliA2.Controllers
         // POST: api/Vendas
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [AllowAnonymous]
         public async Task<ActionResult<Venda>> PostVenda(VendaRequest request)
         {
             Venda venda = new Venda();

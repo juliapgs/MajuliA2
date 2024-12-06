@@ -9,6 +9,7 @@ using MajuliA2.Data;
 using MajuliA2.Entities;
 using MajuliA2.Models.Categoria;
 using Azure.Core;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MajuliA2.Controllers
 {

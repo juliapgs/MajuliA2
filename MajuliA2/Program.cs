@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using MajuliA2.Data;
 using Microsoft.OpenApi.Models;
 
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<MajuliA2Context>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("MajuliA2Context") ?? throw new InvalidOperationException("Connection string 'MajuliA2Context' not found.")));
@@ -14,16 +15,18 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
+
+
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1",
         new Microsoft.OpenApi.Models.OpenApiInfo
         {
-            Title = "MajuliPrt2",
-            Description = "Descri��o Majuli",
+            Title = "majuli",
+            Description = "Majuli croches",
             Contact = new Microsoft.OpenApi.Models.OpenApiContact
             {
-                Name = "API de Eventos da J�lia",
+                Name = "Júlinda",
                 Email = "juliapereira@unitins.br",
                 Url = new Uri("https://www.unitins.br/nPortal/")
             }
@@ -59,6 +62,7 @@ builder.Services.AddSwaggerGen(c =>
     c.IncludeXmlComments(xmlPath);
 });
 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -68,9 +72,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
+app.UseAuthentication(); // Habilitar a autenticação
+app.UseAuthorization(); // Habilitar a autorização
 
 app.MapControllers();
 

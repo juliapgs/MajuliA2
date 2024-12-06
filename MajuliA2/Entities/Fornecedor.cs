@@ -5,12 +5,12 @@ namespace MajuliA2.Entities
     public class Fornecedor
     {
         public int Id { get; set; }
-        public required string Nome { get; set; }
+        public string Nome { get; set; }
 
         [DataType(DataType.PhoneNumber)]
         [Display(Name = "Contato")]
-        public required string Contato { get; set; }
-        public required string Email { get; set; }
-        public required string Endereco { get; set; }
+        public string Contato { get; set; }
+        public string Email { get; set; }
+        public string Endereco { get; set; }
     }
 }
